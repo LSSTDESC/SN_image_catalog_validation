@@ -80,7 +80,7 @@ def sersic_to_mog(sersic_df, bulge_or_disk, flux_colname='flux_%s', filters='ugr
 def get_2d_gaussian(flux_array, sigma_array, ellip_array, phi_array):
     from astropy.modeling import models
     sig_sq = sigma_array**2.0
-    q_sqrt = ((1.0 - ellip_array)/(1 + ellip_array))**0.5
+    q_sqrt = ((1.0 - ellip_array)/(1.0 + ellip_array))**0.5
     lam1 = sig_sq/q_sqrt
     lam2 = sig_sq*q_sqrt
     cos_phi = np.cos(phi_array)
@@ -97,3 +97,21 @@ def get_2d_gaussian(flux_array, sigma_array, ellip_array, phi_array):
 def evaluate_2d_gaussian(x_array, y_array, gaus_2d_func):
     evaluated = gaus_2d_func(x_array, y_array)
     return evaluated
+
+def sample_from_chosen_gaussian(gaus):
+    mean = [0, 0]
+    sig_sq = gaus['gauss_sigma']**2.0
+    ellip = gaus['e']
+    phi =  gaus['phi']
+    q_sqrt = ((1.0 - ellip)/(1.0 + ellip))**0.5
+    lam1 = sig_sq/q_sqrt
+    lam2 = sig_sq*q_sqrt
+    cos_phi = np.cos(phi)
+    sin_phi = np.sin(phi)
+    cov_11 = lam1*cos_phi**2.0 + lam2*sin_phi**2.0
+    cov_22 = lam1*sin_phi**2.0 + lam2*cos_phi**2.0
+    cov_12 = (lam1 - lam2)*cos_phi*sin_phi
+    cov_mat = np.array([[cov_11, cov_12], [cov_12, cov_22]])
+    sample = np.random.multivariate_normal(mean, cov=cov_mat)
+    return sample
+    
