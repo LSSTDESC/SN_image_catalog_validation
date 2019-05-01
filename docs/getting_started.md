@@ -2,6 +2,8 @@
 
 ## Objective: To find a distribution of the surface brightness of the host galaxy at the location of the SNe. 
 
+- The galaxies in the DDF region are now in `/global/projecta/projectdirs/lsst/groups/SSim/DC2/cosmoDC2_v1.1.4/ddf_region_galaxy_catalog`. They are a superset of the SN hosts, and are in a hdf file per Healpixel. 
+
 - The SN we care about are on nersc in the form of a sqlite database. This might get updated, but we want to be able to run the validation tests on a similar sqlite database. The database is located [here](/global/projecta/projectdirs/lsst/groups/SSim/DC2/cosmoDC2_v1.1.4/sne_cosmoDC2_v1.1.4_MS_DDF.db). 
 
 - To read the database on the terminal, we can go to the directory,  and use sqlite to read the top database:
