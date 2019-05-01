@@ -2,7 +2,7 @@
 
 ## Objective: To find a distribution of the surface brightness of the host galaxy at the location of the SNe. 
 
-- The galaxies in the DDF region are now in `/global/projecta/projectdirs/lsst/groups/SSim/DC2/cosmoDC2_v1.1.4/ddf_region_galaxy_catalog`. They are a superset of the SN hosts, and are in a hdf file per Healpixel. 
+- The galaxies in the DDF region are now in `/global/projecta/projectdirs/lsst/groups/SSim/DC2/cosmoDC2_v1.1.4/ddf_region_galaxy_catalog`. They are a superset of the SN hosts, and are in a hdf file per Healpixel. This was done by a code similar to `https://github.com/LSSTDESC/sims_GCRCatSimInterface/blob/u/danielsf/generate/sne/workspace/sne/write_galcat.py` but only working on the DDF regions by restricting the healpixels. It also has  sveral quantities of galaxies. The code doing this is in `utils/write_ddf_galcat.py` 
 
 - The SN we care about are on nersc in the form of a sqlite database. This might get updated, but we want to be able to run the validation tests on a similar sqlite database. The database is located [here](/global/projecta/projectdirs/lsst/groups/SSim/DC2/cosmoDC2_v1.1.4/sne_cosmoDC2_v1.1.4_MS_DDF.db). 
 
