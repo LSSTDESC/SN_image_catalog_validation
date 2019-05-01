@@ -25,6 +25,8 @@ def write_hdf(healpixel, out_dir, catalog_name):
                            'size_bulge_true', 'ra', 'dec',
                            'position_angle_true', 'ra_true', 'dec_true',
                            'morphology/diskHalfLightRadiusArcsec', 'morphology/spheroidHalfLightRadiusArcsec','morphology/positionAngle', 
+                           'ellipticity_1_disk_true', 'ellipticity_2_disk_true',
+                           'ellipticity_1_bulge_true', 'ellipticity_2_bulge_true',
                            'bulge_to_total_ratio_i',
                            'mag_true_u_lsst','mag_true_g_lsst', 'mag_true_r_lsst', 'mag_true_i_lsst', 'mag_true_z_lsst', 'mag_true_Y_lsst'],
                            native_filters=[healpix_query],
