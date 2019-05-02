@@ -3,11 +3,14 @@ import pandas as pd
 import units
 from itertools import product
 
-def _format_extragal_catalog(galaxies, save_to_disk=None):
+def _format_extragal_catalog(galaxies, lensed_positions=True, save_to_disk=None):
     # Unit conversion and column renaming
     filters = list('ugrizY')
     # Pay attention to ra_true vs. ra
-    galaxies[['ra', 'dec']] = units.deg_to_arcsec(galaxies[['ra', 'dec']])
+    if lensed_positions:
+        galaxies[['ra', 'dec']] = units.deg_to_arcsec(galaxies[['ra', 'dec']])
+    else:
+        galaxies[['ra', 'dec']] = units.deg_to_arcsec(galaxies[['ra_true', 'dec_true']])
     galaxies['disk_to_total_ratio'] = 1.0 - galaxies['bulge_to_total_ratio_i']
     for bp in filters:
         galaxies['flux_%s' %bp] = units.mag_to_flux(galaxies['mag_true_%s_lsst' %bp].values, to_unit='nMgy')
